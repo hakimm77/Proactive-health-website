@@ -8,6 +8,8 @@ import {
 import Image from "next/image";
 
 export const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
   return (
     <Flex
       flexDir="column"
@@ -16,7 +18,7 @@ export const Footer = () => {
       alignItems="center"
       p={20}
     >
-      <Flex w="90%" flexDir="row" justifyContent="space-between">
+      <Flex w="90%" flexDir="row" justifyContent="space-between" mb={20}>
         <Flex flexDir="column">
           <Text color="#fff" fontSize={20} fontWeight={600} mb={10}>
             HITTA TILL OSS
@@ -143,6 +145,10 @@ export const Footer = () => {
           </Flex>
         </Flex>
       </Flex>
+
+      <Text mb={-10} color="#fff" fontSize={14}>
+        © {currentYear} Proaktiv Hälsa Sverige AB - Alla rättigheter reserverade
+      </Text>
     </Flex>
   );
 };

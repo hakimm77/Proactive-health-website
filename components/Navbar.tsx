@@ -35,7 +35,7 @@ export const Navbar = () => {
         <Image
           alt="Proaktiv Halsa"
           src={require("../assets/logo.png")}
-          width={120}
+          width={100}
         />
         <Text fontSize={35} fontWeight={"600"} color="#000">
           Proaktiv Hälsa
@@ -68,7 +68,11 @@ export const Navbar = () => {
                     setSelectedNavItem((p) => (p === idx ? undefined : idx));
                   }}
                 >
-                  <Text color="#000" fontWeight="500">
+                  <Text
+                    color="#000"
+                    fontWeight="500"
+                    textDecor={seletedNavItem === idx ? "underline" : "none"}
+                  >
                     {item.name}
                   </Text>
                   <Image
@@ -93,10 +97,11 @@ export const Navbar = () => {
                       <Text
                         color="#000"
                         cursor="pointer"
-                        m={5}
+                        p={5}
                         onClick={() => {
                           router.push(subItem.route);
                         }}
+                        _hover={{ bgColor: "#c7c5c5" }}
                       >
                         {subItem.name}
                       </Text>

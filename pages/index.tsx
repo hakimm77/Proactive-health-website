@@ -1,5 +1,6 @@
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
+import { HormonsFields } from "@/components/landing-page/HormonsFields";
 import { COLORS } from "@/helpers/colors";
 import { clientsReviews } from "@/helpers/staticInfo/clientsReviewsData";
 import { Flex, Text } from "@chakra-ui/react";
@@ -85,7 +86,7 @@ export default function LandingPage() {
         </Flex>
       </Flex>
 
-      <Flex flexDir="column" alignItems="center">
+      <Flex flexDir="column" alignItems="center" mb={20}>
         <Text fontWeight={600} fontSize={20} color="#000" mb={5}>
           TIDIGARE BEHANDLINGAR
         </Text>
@@ -145,39 +146,7 @@ export default function LandingPage() {
         </Flex>
       </Flex>
 
-      {/* <Flex
-        pos="fixed"
-        bottom={50}
-        right={50}
-        bgColor="#000"
-        opacity={0.4}
-        w={"80px"}
-        h={"80px"}
-        borderRadius={"100%"}
-        justifyContent="center"
-        alignItems="center"
-        cursor="pointer"
-        onClick={() => {
-          if (typeof window !== "undefined") {
-            window.scrollTo({
-              top: 0,
-              left: 0,
-              behavior: "smooth",
-            });
-          }
-        }}
-        _hover={{ opacity: 0.7 }}
-      >
-        <Image
-          alt={"go-up"}
-          src={require("../assets/arrow-down-white-icon.png")}
-          style={{
-            transform: "rotate(180deg)",
-            width: 40,
-            height: 40,
-          }}
-        />
-      </Flex> */}
+      <HormonsFields />
 
       <Footer />
     </Flex>
