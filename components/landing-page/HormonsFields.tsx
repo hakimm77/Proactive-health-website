@@ -8,11 +8,13 @@ import {
   Text,
   Textarea,
 } from "@chakra-ui/react";
+import { useMediaQuery } from "@material-ui/core";
 import Image from "next/image";
 import { useState } from "react";
 
 export const HormonsFields = () => {
   const [acceptedRules, setAcceptedRules] = useState(false);
+  const isMobile = useMediaQuery("(max-width:1400px)");
   const [inputFields, setInputFields] = useState<any[]>([
     {
       placeholder: "Ditt namn*",
@@ -52,8 +54,18 @@ export const HormonsFields = () => {
   };
 
   return (
-    <Flex flexDir="row" w="90%" justifyContent="space-between" mb={20}>
-      <Flex flexDir="column" w="40%">
+    <Flex
+      flexDir={isMobile ? "column" : "row"}
+      w={isMobile ? "100%" : "90%"}
+      justifyContent="space-between"
+      alignItems={isMobile ? "center" : ""}
+      mb={20}
+    >
+      <Flex
+        flexDir="column"
+        w={isMobile ? "90%" : "40%"}
+        mb={isMobile ? 20 : 0}
+      >
         <Text color="#000" fontWeight={600} fontSize={16} mb={3}>
           Boka en tid för provtagning
         </Text>
@@ -126,7 +138,7 @@ export const HormonsFields = () => {
         </Button>
       </Flex>
 
-      <Flex w="50%" flexDir="column">
+      <Flex flexDir="column" w={isMobile ? "95%" : "50%"}>
         <Image
           alt={"main-image"}
           src={require("../../assets/header-image.jpg")}

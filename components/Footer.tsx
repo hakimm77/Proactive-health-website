@@ -6,9 +6,11 @@ import {
   socialMediaData,
 } from "../helpers/staticInfo/footerData";
 import Image from "next/image";
+import { useMediaQuery } from "@material-ui/core";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const isMobile = useMediaQuery("(max-width:1400px)");
 
   return (
     <Flex
@@ -16,16 +18,28 @@ export const Footer = () => {
       w="100%"
       bgColor={COLORS.blue}
       alignItems="center"
-      p={20}
+      p={isMobile ? 5 : 20}
     >
-      <Flex w="90%" flexDir="row" justifyContent="space-between" mb={20}>
-        <Flex flexDir="column">
-          <Text color="#fff" fontSize={20} fontWeight={600} mb={10}>
+      <Flex
+        w="90%"
+        flexDir={isMobile ? "column" : "row"}
+        justifyContent="space-between"
+        mb={20}
+      >
+        <Flex flexDir="column" mb={isMobile ? 10 : 0}>
+          <Text
+            color="#fff"
+            fontSize={20}
+            fontWeight={600}
+            mb={isMobile ? 5 : 10}
+          >
             HITTA TILL OSS
           </Text>
-          <Text fontSize={18} color="#fff" mb={5}>
-            Hitta till våra mottagning
-          </Text>
+          {!isMobile && (
+            <Text fontSize={18} color="#fff" mb={5}>
+              Hitta till våra mottagning
+            </Text>
+          )}
 
           {socialMediaData.map((item, idx) => (
             <Flex
@@ -60,8 +74,13 @@ export const Footer = () => {
           ))}
         </Flex>
 
-        <Flex flexDir="column">
-          <Text color="#fff" fontSize={20} fontWeight={600} mb={10}>
+        <Flex flexDir="column" mb={isMobile ? 10 : 0}>
+          <Text
+            color="#fff"
+            fontSize={20}
+            fontWeight={600}
+            mb={isMobile ? 5 : 10}
+          >
             FÖRETAG
           </Text>
 
@@ -95,8 +114,13 @@ export const Footer = () => {
           ))}
         </Flex>
 
-        <Flex flexDir="column">
-          <Text color="#fff" fontSize={20} fontWeight={600} mb={10}>
+        <Flex flexDir="column" mb={isMobile ? 10 : 0}>
+          <Text
+            color="#fff"
+            fontSize={20}
+            fontWeight={600}
+            mb={isMobile ? 5 : 10}
+          >
             SENASTE NYTT
           </Text>
 
@@ -130,8 +154,13 @@ export const Footer = () => {
           ))}
         </Flex>
 
-        <Flex flexDir="column">
-          <Text color="#fff" fontSize={20} fontWeight={600} mb={10}>
+        <Flex flexDir="column" mb={isMobile ? 10 : 0}>
+          <Text
+            color="#fff"
+            fontSize={20}
+            fontWeight={600}
+            mb={isMobile ? 5 : 10}
+          >
             ÖPPETTIDER
           </Text>
 
@@ -146,7 +175,12 @@ export const Footer = () => {
         </Flex>
       </Flex>
 
-      <Text mb={-10} color="#fff" fontSize={14}>
+      <Text
+        mb={isMobile ? 0 : -10}
+        color="#fff"
+        fontSize={14}
+        textAlign="center"
+      >
         © {currentYear} Proaktiv Hälsa Sverige AB - Alla rättigheter reserverade
       </Text>
     </Flex>

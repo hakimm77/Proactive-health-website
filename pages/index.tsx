@@ -4,12 +4,14 @@ import { HormonsFields } from "@/components/landing-page/HormonsFields";
 import { COLORS } from "@/helpers/colors";
 import { clientsReviews } from "@/helpers/staticInfo/clientsReviewsData";
 import { Flex, Text } from "@chakra-ui/react";
+import { useMediaQuery } from "@material-ui/core";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
 
 export default function LandingPage() {
   const router = useRouter();
+  const isMobile = useMediaQuery("(max-width:1400px)");
 
   return (
     <Flex
@@ -47,17 +49,18 @@ export default function LandingPage() {
           mt={100}
           position="absolute"
           flexDir="column"
-          top={150}
-          left={150}
+          top={isMobile ? "100px" : 150}
+          left={isMobile ? 0 : 150}
+          alignItems="center"
         >
           <Text
             color="#fff"
             bgColor="#000"
-            w="270px"
+            w={"fit-content"}
             fontWeight={500}
-            fontSize={20}
+            fontSize={isMobile ? 18 : 20}
             p={2}
-            mb={5}
+            mb={isMobile ? 20 : 5}
           >
             ÖVERVIKTSMOTTAGNING
           </Text>
@@ -65,14 +68,15 @@ export default function LandingPage() {
           <Text
             color="#000"
             fontWeight="extrabold"
-            fontSize={65}
-            textDecor="underline"
+            fontSize={isMobile ? 35 : 65}
+            textDecor={isMobile ? "none" : "underline"}
             mb={5}
+            textAlign="center"
           >
             Proaktiv Hälsa
           </Text>
 
-          <Text fontSize={20}>
+          <Text fontSize={isMobile ? 18 : 20} textAlign="center">
             BLI AV MED DIN ÖVERVIKT UTAN OPERATION...{"  "}
             <span
               style={{ fontWeight: "bold", cursor: "pointer" }}
@@ -86,17 +90,23 @@ export default function LandingPage() {
         </Flex>
       </Flex>
 
-      <Flex flexDir="column" alignItems="center" mb={20}>
+      <Flex flexDir="column" alignItems="center" mb={isMobile ? 0 : 20}>
         <Text fontWeight={600} fontSize={20} color="#000" mb={5}>
           TIDIGARE BEHANDLINGAR
         </Text>
-        <Text fontWeight={800} fontSize={40} color="#000" mb={5}>
+        <Text
+          fontWeight={800}
+          fontSize={isMobile ? 35 : 40}
+          color="#000"
+          mb={5}
+          textAlign="center"
+        >
           Vad säger våra patienter?
         </Text>
         <Text
           fontSize={20}
           color={COLORS.gray}
-          w="55%"
+          w={isMobile ? "95%" : "55%"}
           textAlign="center"
           mb={20}
         >
@@ -106,17 +116,17 @@ export default function LandingPage() {
         </Text>
 
         <Flex
-          flexDir="row"
-          w="90%"
+          flexDir={isMobile ? "column" : "row"}
+          w={isMobile ? "100%" : "90%"}
           alignItems="center"
           justifyContent="space-between"
           mb={20}
         >
           {clientsReviews.map((item, idx) => (
-            <Flex key={idx} flexDir="column" alignItems="center">
+            <Flex key={idx} flexDir={"column"} alignItems="center">
               <Flex
-                w={"400px"}
-                h={200}
+                w={isMobile ? "90%" : "400px"}
+                h={isMobile ? "auto" : 200}
                 alignItems="center"
                 justifyContent="center"
                 bgColor="#000"
@@ -125,22 +135,29 @@ export default function LandingPage() {
                 p={10}
                 borderRadius={10}
                 textAlign="center"
-                mb={5}
+                mb={isMobile ? 0 : 5}
               >
                 {item.review}
               </Flex>
-              <Image
-                alt="Proaktiv Halsa"
-                src={require("../assets/logo.png")}
-                width={100}
-                style={{ marginBottom: 20 }}
-              />
-              <Text color="#000" fontSize={23} fontWeight={600}>
-                {item.name}
-              </Text>
-              <Text color={COLORS.gray} fontSize={20}>
-                {item.result}
-              </Text>
+
+              <Flex
+                flexDir={"column"}
+                alignItems="center"
+                mb={isMobile ? 20 : 0}
+              >
+                <Image
+                  alt="Proaktiv Halsa"
+                  src={require("../assets/logo.png")}
+                  width={isMobile ? 80 : 100}
+                  style={{ marginBottom: 20 }}
+                />
+                <Text color="#000" fontSize={23} fontWeight={600}>
+                  {item.name}
+                </Text>
+                <Text color={COLORS.gray} fontSize={isMobile ? 18 : 20}>
+                  {item.result}
+                </Text>
+              </Flex>
             </Flex>
           ))}
         </Flex>
