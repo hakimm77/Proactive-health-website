@@ -103,6 +103,7 @@ const StaffPage = () => {
             width: isMobile ? "95%" : "35%",
             objectFit: "contain",
             alignSelf: isMobile ? "center" : "",
+            borderRadius: 10,
           }}
         />
       </Flex>
