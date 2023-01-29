@@ -12,7 +12,7 @@ import { useMediaQuery } from "@material-ui/core";
 import Image from "next/image";
 import { useState } from "react";
 
-export const HormonsFields = () => {
+export const HormonsFields = ({ fieldsOnly }: { fieldsOnly?: boolean }) => {
   const [acceptedRules, setAcceptedRules] = useState(false);
   const isMobile = useMediaQuery("(max-width:1400px)");
   const [inputFields, setInputFields] = useState<any[]>([
@@ -63,29 +63,34 @@ export const HormonsFields = () => {
     >
       <Flex
         flexDir="column"
-        w={isMobile ? "90%" : "40%"}
+        w={isMobile ? "90%" : fieldsOnly ? "100%" : "40%"}
         mb={isMobile ? 20 : 0}
       >
-        <Text color="#000" fontWeight={600} fontSize={16} mb={3}>
-          Boka en tid för provtagning
-        </Text>
-        <Text color="#000" fontWeight={600} fontSize={40} mb={10}>
-          Hormonanalys
-        </Text>
+        {!fieldsOnly && (
+          <>
+            <Text color="#000" fontWeight={600} fontSize={16} mb={3}>
+              Boka en tid för provtagning
+            </Text>
+            <Text color="#000" fontWeight={600} fontSize={40} mb={10}>
+              Hormonanalys
+            </Text>
 
-        <Text color={COLORS.gray} fontSize={16} mb={5}>
-          En hormonanalys tar en förmiddag, du kommer fastande och vi tar prover
-          mellan kl. 8-12, svaren tar 1 vecka att få tillbaka från labb och då
-          får du en tid hos vår läkare som går igenom svaren med dig.{" "}
-        </Text>
-        <Text color={COLORS.gray} fontSize={16} mb={10}>
-          Betalning via{" "}
-          <span style={{ color: "#000", cursor: "pointer" }}>
-            QR-kod i swish
-          </span>{" "}
-          innan du hör av dig så återkommer vi inom 24 timmar och bokar en dag
-          som passar dig.{" "}
-        </Text>
+            <Text color={COLORS.gray} fontSize={16} mb={5}>
+              En hormonanalys tar en förmiddag, du kommer fastande och vi tar
+              prover mellan kl. 8-12, svaren tar 1 vecka att få tillbaka från
+              labb och då får du en tid hos vår läkare som går igenom svaren med
+              dig.{" "}
+            </Text>
+            <Text color={COLORS.gray} fontSize={16} mb={10}>
+              Betalning via{" "}
+              <span style={{ color: "#000", cursor: "pointer" }}>
+                QR-kod i swish
+              </span>{" "}
+              innan du hör av dig så återkommer vi inom 24 timmar och bokar en
+              dag som passar dig.{" "}
+            </Text>
+          </>
+        )}
 
         <Flex
           flexDir="row"
@@ -95,6 +100,7 @@ export const HormonsFields = () => {
         >
           {inputFields.map((item, idx) => (
             <Textarea
+              as={item.full ? "textarea" : "input"}
               bgColor="#fff"
               placeholder={item.placeholder}
               value={item.value}
@@ -138,21 +144,23 @@ export const HormonsFields = () => {
         </Button>
       </Flex>
 
-      <Flex flexDir="column" w={isMobile ? "95%" : "50%"}>
-        <Image
-          alt={"main-image"}
-          src={require("../../assets/header-image.jpg")}
-          style={{ objectFit: "contain" }}
-        />
-        <Flex bgColor="#000" p={5} flexDir="column">
-          <Text color="#fff" fontSize={21}>
-            BLI AV MED DIN ÖVERVIKT
-          </Text>
-          <Text color="#fff" fontSize={25} fontWeight={600}>
-            Vi garanterar återgång till normal vikt!
-          </Text>
+      {!fieldsOnly && (
+        <Flex flexDir="column" w={isMobile ? "95%" : "50%"}>
+          <Image
+            alt={"main-image"}
+            src={require("../../assets/header-image.jpg")}
+            style={{ objectFit: "contain" }}
+          />
+          <Flex bgColor="#000" p={5} flexDir="column">
+            <Text color="#fff" fontSize={21}>
+              BLI AV MED DIN ÖVERVIKT
+            </Text>
+            <Text color="#fff" fontSize={25} fontWeight={600}>
+              Vi garanterar återgång till normal vikt!
+            </Text>
+          </Flex>
         </Flex>
-      </Flex>
+      )}
     </Flex>
   );
 };
