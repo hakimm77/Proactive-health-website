@@ -12,7 +12,13 @@ import { useMediaQuery } from "@material-ui/core";
 import Image from "next/image";
 import { useState } from "react";
 
-export const HormonsFields = ({ fieldsOnly }: { fieldsOnly?: boolean }) => {
+export const HormonsFields = ({
+  fieldsOnly,
+  hormonsPage,
+}: {
+  fieldsOnly?: boolean;
+  hormonsPage?: boolean;
+}) => {
   const [acceptedRules, setAcceptedRules] = useState(false);
   const isMobile = useMediaQuery("(max-width:1400px)");
   const [inputFields, setInputFields] = useState<any[]>([
@@ -75,20 +81,32 @@ export const HormonsFields = ({ fieldsOnly }: { fieldsOnly?: boolean }) => {
               Hormonanalys
             </Text>
 
-            <Text color={COLORS.gray} fontSize={16} mb={5}>
-              En hormonanalys tar en förmiddag, du kommer fastande och vi tar
-              prover mellan kl. 8-12, svaren tar 1 vecka att få tillbaka från
-              labb och då får du en tid hos vår läkare som går igenom svaren med
-              dig.{" "}
-            </Text>
-            <Text color={COLORS.gray} fontSize={16} mb={10}>
-              Betalning via{" "}
-              <span style={{ color: "#000", cursor: "pointer" }}>
-                QR-kod i swish
-              </span>{" "}
-              innan du hör av dig så återkommer vi inom 24 timmar och bokar en
-              dag som passar dig.{" "}
-            </Text>
+            {hormonsPage ? (
+              <Text color={COLORS.gray} fontSize={16} mb={10}>
+                En hormonanalys tar en förmiddag, du kommer fastande och vi tar
+                prover mellan kl. 8-12, svaren tar 1 vecka att få tillbakafrån
+                labb och då får du en tid hos vår läkare som går igenomsvaren
+                med dig. Betalning via QR-kod i swish innan du hör av dig så
+                återkommer vi inom 24 timmar och bokar en dag som passar dig.
+              </Text>
+            ) : (
+              <>
+                <Text color={COLORS.gray} fontSize={16} mb={5}>
+                  En hormonanalys tar en förmiddag, du kommer fastande och vi
+                  tar prover mellan kl. 8-12, svaren tar 1 vecka att få tillbaka
+                  från labb och då får du en tid hos vår läkare som går igenom
+                  svaren med dig.{" "}
+                </Text>
+                <Text color={COLORS.gray} fontSize={16} mb={10}>
+                  Betalning via{" "}
+                  <span style={{ color: "#000", cursor: "pointer" }}>
+                    QR-kod i swish
+                  </span>{" "}
+                  innan du hör av dig så återkommer vi inom 24 timmar och bokar
+                  en dag som passar dig.{" "}
+                </Text>
+              </>
+            )}
           </>
         )}
 

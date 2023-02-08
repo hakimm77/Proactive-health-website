@@ -32,9 +32,6 @@ export const Navbar = () => {
         flexDir="row"
         alignItems="center"
         cursor="pointer"
-        onClick={() => {
-          router.push("/");
-        }}
         mt={openNavItems ? 5 : 0}
         mb={openNavItems ? 5 : 0}
       >
@@ -43,7 +40,14 @@ export const Navbar = () => {
           src={require("../assets/logo.png")}
           width={isMobile ? 70 : 100}
         />
-        <Text fontSize={isMobile ? 25 : 35} fontWeight={"600"} color="#000">
+        <Text
+          fontSize={isMobile ? 25 : 35}
+          fontWeight={"600"}
+          color="#000"
+          onClick={() => {
+            router.push("/");
+          }}
+        >
           Proaktiv Hälsa
         </Text>
 
