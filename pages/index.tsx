@@ -82,7 +82,7 @@ export default function LandingPage() {
               <span
                 style={{ fontWeight: "bold", cursor: "pointer" }}
                 onClick={() => {
-                  router.push("/");
+                  router.push("/tjanster");
                 }}
               >
                 LÄS MER

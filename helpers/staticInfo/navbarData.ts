@@ -4,19 +4,19 @@ export const navItems = [
     routes: [
       {
         name: "Personal",
-        route: "/",
+        route: "/om-oss/personal",
       },
       {
         name: "Styrelse",
-        route: "/",
+        route: "/om-oss/styrelse",
       },
       {
         name: "Stiftelse",
-        route: "/",
+        route: "/om-oss/stiftelsen",
       },
       {
         name: "Investerare",
-        route: "/",
+        route: "/om-oss/investerare",
       },
     ],
   },
@@ -25,19 +25,19 @@ export const navItems = [
     routes: [
       {
         name: "Basprover",
-        route: "/",
+        route: "/tjanster/basprover",
       },
       {
         name: "Hormonanalys",
-        route: "/",
+        route: "/tjanster/hormonanalys",
       },
       {
         name: "Överviktsbehandling",
-        route: "/",
+        route: "/tjanster/overviktsbehandling",
       },
       {
         name: "Receptförnyelse",
-        route: "/",
+        route: "/tjanster/receptfornyelser",
       },
     ],
   },
@@ -46,11 +46,11 @@ export const navItems = [
     routes: [
       {
         name: "Egen forskning",
-        route: "/",
+        route: "/forskning/egen-forskning",
       },
       {
         name: "Referensartiklar",
-        route: "/",
+        route: "/forskning/referensartiklar",
       },
     ],
   },
@@ -59,15 +59,15 @@ export const navItems = [
     routes: [
       {
         name: "Nyheter",
-        route: "/",
+        route: "/media/nyheter",
       },
       {
         name: "Pressmedelanden",
-        route: "/",
+        route: "/media/pressmeddelanden",
       },
       {
         name: "Prenumerera",
-        route: "/",
+        route: "/media/nyhetsbrev",
       },
     ],
   },

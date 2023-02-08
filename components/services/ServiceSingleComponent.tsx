@@ -2,8 +2,10 @@ import { COLORS } from "@/helpers/colors";
 import { Flex, Text } from "@chakra-ui/react";
 import { useMediaQuery } from "@material-ui/core";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 const ServiceSingleComponent = ({ service }: { service: any }) => {
+  const router = useRouter();
   const isMobile = useMediaQuery("(max-width:1400px)");
 
   return (
@@ -31,6 +33,9 @@ const ServiceSingleComponent = ({ service }: { service: any }) => {
           mb={3}
           cursor="pointer"
           _hover={{ color: "#000" }}
+          onClick={() => {
+            router.push(service.link);
+          }}
         >
           {service.title}
         </Text>
@@ -52,7 +57,9 @@ const ServiceSingleComponent = ({ service }: { service: any }) => {
           flexDir="row"
           alignItems="center"
           cursor="pointer"
-          onClick={() => {}}
+          onClick={() => {
+            router.push(service.link);
+          }}
         >
           <Text
             color={"#000"}

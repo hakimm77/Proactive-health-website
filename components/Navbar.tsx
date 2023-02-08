@@ -213,6 +213,9 @@ export const Navbar = () => {
               border="1.5px solid #000"
               color="#000"
               _hover={{ backgroundColor: "#000", color: "#fff" }}
+              onClick={() => {
+                router.push("/book-consultation");
+              }}
             >
               BOKA KONSULTATION
             </Button>

@@ -6,7 +6,7 @@ export const servicesData = [
     och swish, vår sjuksköterska kontaktar
     dig för en tid till provtagning hos Unilabs.`,
     price: "1 000 SEK",
-    link: "/",
+    link: "/tjanster/basprover",
   },
   {
     topText: "Hos oss är du en förmiddag  8-12 för provtagning",
@@ -15,13 +15,13 @@ export const servicesData = [
     och swish, vår sjuksköterska kontaktar dig
     för en tid till provtagning på vår mottagning.`,
     price: "2 998 SEK",
-    link: "/",
+    link: "/tjanster/hormonanalys",
   },
   {
     topText: "Kostnadsfritt besök hos läkare 60 minuter",
     title: "Överviktsbehandling",
     description: `Du är med i behandling 12 månader, vi sysslar inte med kostrådgivning eller motionsprogram, endast läkemedel, inga operationer.`,
     price: "25 000 SEK",
-    link: "/",
+    link: "/tjanster/overviktsbehandling",
   },
 ];
