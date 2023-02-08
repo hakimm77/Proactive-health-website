@@ -65,28 +65,30 @@ export default function LandingPage() {
             ÖVERVIKTSMOTTAGNING
           </Text>
 
-          <Text
-            color="#000"
-            fontWeight="extrabold"
-            fontSize={isMobile ? 35 : 65}
-            textDecor={isMobile ? "none" : "underline"}
-            mb={5}
-            textAlign="center"
-          >
-            Proaktiv Hälsa
-          </Text>
-
-          <Text fontSize={isMobile ? 18 : 20} textAlign="center">
-            BLI AV MED DIN ÖVERVIKT UTAN OPERATION...{"  "}
-            <span
-              style={{ fontWeight: "bold", cursor: "pointer" }}
-              onClick={() => {
-                router.push("/");
-              }}
+          <Flex flexDir="column">
+            <Text
+              color="#000"
+              fontWeight="extrabold"
+              fontSize={isMobile ? 35 : 65}
+              textDecor={isMobile ? "none" : "underline"}
+              mb={5}
+              textAlign="center"
             >
-              LÄS MER
-            </span>
-          </Text>
+              Proaktiv Hälsa
+            </Text>
+
+            <Text fontSize={isMobile ? 18 : 20} textAlign="center" ml={5}>
+              BLI AV MED DIN ÖVERVIKT UTAN OPERATION...{"  "}
+              <span
+                style={{ fontWeight: "bold", cursor: "pointer" }}
+                onClick={() => {
+                  router.push("/");
+                }}
+              >
+                LÄS MER
+              </span>
+            </Text>
+          </Flex>
         </Flex>
       </Flex>
 
