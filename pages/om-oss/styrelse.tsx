@@ -1,11 +1,14 @@
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { COLORS } from "@/helpers/colors";
+import { redirectLink } from "@/helpers/redirectLink";
 import { Flex, Text } from "@chakra-ui/react";
 import { useMediaQuery } from "@material-ui/core";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 const BoardPage = () => {
+  const router = useRouter();
   const isMobile = useMediaQuery("(max-width:1400px)");
 
   return (
@@ -58,7 +61,12 @@ const BoardPage = () => {
 
           <Text mb={10}>
             Vi har{" "}
-            <span style={{ color: "#000", cursor: "pointer" }}>
+            <span
+              style={{ color: "#000", cursor: "pointer" }}
+              onClick={() => {
+                router.push("/om-oss/stiftelsen");
+              }}
+            >
               pro bono verksamhet
             </span>{" "}
             som finansieras av våra patienter, när du väljer att hjälpa dig
@@ -87,7 +95,12 @@ const BoardPage = () => {
 
           <Text mb={10}>
             Vi individanpassar medicinsk behandling utifrån{" "}
-            <span style={{ color: "#000", cursor: "pointer" }}>
+            <span
+              style={{ color: "#000", cursor: "pointer" }}
+              onClick={() => {
+                router.push("/tjanster/hormonanalys");
+              }}
+            >
               hormonanalyser
             </span>
             .
@@ -112,13 +125,27 @@ const BoardPage = () => {
           </Text>
 
           <Text mb={5} as="li">
-            <span style={{ color: "#000", cursor: "pointer" }}>
+            <span
+              style={{ color: "#000", cursor: "pointer" }}
+              onClick={() => {
+                redirectLink(
+                  "https://www.linkedin.com/in/michel-tagliati-md-92069a41/"
+                );
+              }}
+            >
               Michel Tagliati
             </span>
             , MD, CEO Grundare, Styrelseordförande{" "}
           </Text>
           <Text mb={5} as="li">
-            <span style={{ color: "#000", cursor: "pointer" }}>
+            <span
+              style={{ color: "#000", cursor: "pointer" }}
+              onClick={() => {
+                redirectLink(
+                  "https://www.linkedin.com/in/bj%C3%B6rn-s%C3%B6derberg-4757052b/"
+                );
+              }}
+            >
               Björn Söderberg
             </span>
             , COO Delägare, Styrelseledarmot

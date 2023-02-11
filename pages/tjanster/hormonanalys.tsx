@@ -1,11 +1,14 @@
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { COLORS } from "@/helpers/colors";
+import { redirectLink } from "@/helpers/redirectLink";
 import { Flex, Text } from "@chakra-ui/react";
 import { useMediaQuery } from "@material-ui/core";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 const HormonAnalysisPage = () => {
+  const router = useRouter();
   const isMobile = useMediaQuery("(max-width:1400px)");
 
   return (
@@ -42,7 +45,15 @@ const HormonAnalysisPage = () => {
           <Text mb={10}>
             Innan du gör en hormonanalys hos oss går du till Unilabs i Stockholm
             eller Göteborg och tar{" "}
-            <span style={{ color: "#000", cursor: "pointer" }}>Basprover</span>.
+            <span
+              style={{ color: "#000", cursor: "pointer" }}
+              onClick={() => {
+                router.push("/tjanster/basprover");
+              }}
+            >
+              Basprover
+            </span>
+            .
           </Text>
 
           <Text mb={10}>
@@ -63,7 +74,14 @@ const HormonAnalysisPage = () => {
           </Text>
 
           <Text mb={10}>
-            <span style={{ color: "#000", cursor: "pointer" }}>
+            <span
+              style={{ color: "#000", cursor: "pointer" }}
+              onClick={() => {
+                redirectLink(
+                  "https://patient.nu/portal/public/calendar/84f5316c-3986-11ed-99ba-fa163e329242"
+                );
+              }}
+            >
               Boka i vår tidbok
             </span>{" "}
             (kopplat till vårt journalsystem på kliniken)
@@ -84,9 +102,23 @@ const HormonAnalysisPage = () => {
 
           <Text mb={5} as="li">
             Du betalar via Swish och{" "}
-            <span style={{ color: "#000", cursor: "pointer" }}>QR-kod</span> här
-            och fyll i dina uppgifter i det här{" "}
-            <span style={{ color: "#000", cursor: "pointer" }}>formuläret</span>
+            <span
+              style={{ color: "#000", cursor: "pointer" }}
+              onClick={() => {
+                router.push("/hormonanalys-payment");
+              }}
+            >
+              QR-kod
+            </span>{" "}
+            här och fyll i dina uppgifter i det här{" "}
+            <span
+              style={{ color: "#000", cursor: "pointer" }}
+              onClick={() => {
+                router.push("/book-consultation");
+              }}
+            >
+              formuläret
+            </span>
             .
           </Text>
         </Flex>

@@ -1,11 +1,14 @@
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { COLORS } from "@/helpers/colors";
+import { redirectLink } from "@/helpers/redirectLink";
 import { Flex, Text } from "@chakra-ui/react";
 import { useMediaQuery } from "@material-ui/core";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 const ObesityPage = () => {
+  const router = useRouter();
   const isMobile = useMediaQuery("(max-width:1400px)");
 
   return (
@@ -52,11 +55,23 @@ const ObesityPage = () => {
 
           <Text mb={10}>
             Boka tid för{" "}
-            <span style={{ color: "#000", cursor: "pointer" }}>
+            <span
+              style={{ color: "#000", cursor: "pointer" }}
+              onClick={() => {
+                redirectLink(
+                  "https://patient.nu/portal/public/calendar/fba13539-398b-11ed-99ba-fa163e329242"
+                );
+              }}
+            >
               läkarkonsultation
             </span>
             , efter du genomfört{" "}
-            <span style={{ color: "#000", cursor: "pointer" }}>
+            <span
+              style={{ color: "#000", cursor: "pointer" }}
+              onClick={() => {
+                router.push("/tjanster/hormonanalys");
+              }}
+            >
               hormonanalysen
             </span>
           </Text>

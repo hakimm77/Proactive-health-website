@@ -1,13 +1,12 @@
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { PaymentComponent } from "@/components/PaymentComponent";
-import { HormonsFields } from "@/components/landing-page/HormonsFields";
 import { COLORS } from "@/helpers/colors";
 import { Flex, Text } from "@chakra-ui/react";
 import { useMediaQuery } from "@material-ui/core";
 import Image from "next/image";
 
-const RenewalPage = () => {
+const HormonanalysPayment = () => {
   const isMobile = useMediaQuery("(max-width:1400px)");
 
   return (
@@ -38,34 +37,35 @@ const RenewalPage = () => {
             fontWeight={600}
             mb={10}
           >
-            Receptförnyelser
+            Hormonanalys
           </Text>
 
           <Text mb={10}>
-            Tjänsten är endast för våra egna patienter. Vi förnyar inte recept
-            för andra personer.
+            Du kommer till oss fastande och vi tar blodprover med fasta
+            intervaller under hela förmiddagen.
           </Text>
 
           <Text mb={10}>
-            Betalning via swish QR-kod i swish vårt journalsystem skickar ett
-            SMS till dig när receptet är förnyat.
+            Proverna analyseras via Unilabs och svaren tar ca en vecka att få
+            åter in i våra journalsystem.
           </Text>
 
-          <HormonsFields fieldsOnly />
+          <Text mb={10}>I priset ingår provtagning och läkarkonsultation.</Text>
+
+          <Text mb={5} as="li">
+            Insulinkurvor.
+          </Text>
+
+          <Text mb={5} as="li">
+            Underlag för överviktsbehandling.
+          </Text>
+
+          <Text mb={5} as="li">
+            Vår läkare går igenom svaren med dig.
+          </Text>
         </Flex>
 
-        {/* <Image
-          src={require("../../assets/renewal-swish.jpg")}
-          alt={"swish-renewal"}
-          style={{
-            width: isMobile ? "95%" : "35%",
-            objectFit: "contain",
-            alignSelf: isMobile ? "center" : "",
-            borderRadius: 10,
-          }}
-        /> */}
-
-        <PaymentComponent type="receptfornyelser" imageType="jpg" />
+        <PaymentComponent type="hormonanalys" />
       </Flex>
 
       <Footer />
@@ -73,4 +73,4 @@ const RenewalPage = () => {
   );
 };
 
-export default RenewalPage;
+export default HormonanalysPayment;

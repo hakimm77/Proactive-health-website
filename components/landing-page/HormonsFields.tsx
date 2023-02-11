@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { useMediaQuery } from "@material-ui/core";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 export const HormonsFields = ({
@@ -21,6 +22,7 @@ export const HormonsFields = ({
 }) => {
   const [acceptedRules, setAcceptedRules] = useState(false);
   const isMobile = useMediaQuery("(max-width:1400px)");
+  const router = useRouter();
   const [inputFields, setInputFields] = useState<any[]>([
     {
       placeholder: "Ditt namn*",
@@ -99,7 +101,12 @@ export const HormonsFields = ({
                 </Text>
                 <Text color={COLORS.gray} fontSize={16} mb={10}>
                   Betalning via{" "}
-                  <span style={{ color: "#000", cursor: "pointer" }}>
+                  <span
+                    style={{ color: "#000", cursor: "pointer" }}
+                    onClick={() => {
+                      router.push("/hormonanalys-payment");
+                    }}
+                  >
                     QR-kod i swish
                   </span>{" "}
                   innan du hör av dig så återkommer vi inom 24 timmar och bokar

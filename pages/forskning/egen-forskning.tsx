@@ -1,6 +1,7 @@
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { COLORS } from "@/helpers/colors";
+import { redirectLink } from "@/helpers/redirectLink";
 import { Flex, Text } from "@chakra-ui/react";
 import { useMediaQuery } from "@material-ui/core";
 import Image from "next/image";
@@ -62,7 +63,17 @@ const OwnResearchPage = () => {
             Coala Lifes Titan-DM studie med 600 deltagare är fullrekryterad
           </Text>
 
-          <Text mb={5} as="li" color="#000" cursor="pointer">
+          <Text
+            mb={5}
+            as="li"
+            color="#000"
+            cursor="pointer"
+            onClick={() => {
+              redirectLink(
+                "https://investors.coalalife.com/sv/media/pressmeddelanden/"
+              );
+            }}
+          >
             Region Gävleborg inleder TITAN-DM studien på diabetespatienter i
             samarbete med Coala Life
           </Text>

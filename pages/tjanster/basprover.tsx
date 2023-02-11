@@ -1,12 +1,22 @@
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
+import { PaymentComponent } from "@/components/PaymentComponent";
 import { COLORS } from "@/helpers/colors";
+import { redirectLink } from "@/helpers/redirectLink";
 import { Flex, Text } from "@chakra-ui/react";
 import { useMediaQuery } from "@material-ui/core";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 const BaseSamplePage = () => {
+  const router = useRouter();
   const isMobile = useMediaQuery("(max-width:1400px)");
+
+  const redirectMailTo = () => {
+    if (typeof window !== "undefined") {
+      window.open("mailto:info@proaktivhalsa.se");
+    }
+  };
 
   return (
     <Flex flexDir="column" alignItems="center" bgColor={COLORS.pink}>
@@ -47,7 +57,10 @@ const BaseSamplePage = () => {
 
           <Text mb={10}>
             Du betalar via QR-kod på swish och mailar en skärmdump till{" "}
-            <span style={{ color: "#000", cursor: "pointer" }}>
+            <span
+              style={{ color: "#000", cursor: "pointer" }}
+              onClick={redirectMailTo}
+            >
               info@proaktivhalsa.se
             </span>{" "}
             så bokar proverna i Unilabs system.
@@ -55,9 +68,25 @@ const BaseSamplePage = () => {
 
           <Text mb={10}>
             Du kan sedan välja var du vill ta dina prover i{" "}
-            <span style={{ color: "#000", cursor: "pointer" }}>Stockholm</span>{" "}
+            <span
+              style={{ color: "#000", cursor: "pointer" }}
+              onClick={() => {
+                redirectLink("https://unilabs.se/h%C3%A4r-finns-vi");
+              }}
+            >
+              Stockholm
+            </span>{" "}
             eller{" "}
-            <span style={{ color: "#000", cursor: "pointer" }}>Göteborg</span>
+            <span
+              style={{ color: "#000", cursor: "pointer" }}
+              onClick={() => {
+                redirectLink(
+                  "https://carlanderska.se/verksamhet/unilabs-provtagning/"
+                );
+              }}
+            >
+              Göteborg
+            </span>
           </Text>
 
           <Text mb={5} as="li">
@@ -66,23 +95,19 @@ const BaseSamplePage = () => {
 
           <Text mb={5} as="li">
             Svaren analyseras i anslutning till att du gör en{" "}
-            <span style={{ color: "#000", cursor: "pointer" }}>
+            <span
+              style={{ color: "#000", cursor: "pointer" }}
+              onClick={() => {
+                router.push("/tjanster/hormonanalys");
+              }}
+            >
               Hormonanalys
             </span>{" "}
             hos oss
           </Text>
         </Flex>
 
-        <Image
-          src={require("../../assets/doctor-image.jpg")}
-          alt={"doctor-image"}
-          style={{
-            width: isMobile ? "95%" : "35%",
-            objectFit: "contain",
-            alignSelf: isMobile ? "center" : "",
-            borderRadius: 10,
-          }}
-        />
+        <PaymentComponent type="basprover" />
       </Flex>
 
       <Footer />
