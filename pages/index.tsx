@@ -1,17 +1,29 @@
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { HormonsFields } from "@/components/landing-page/HormonsFields";
+import { PopupModal } from "@/components/landing-page/PopupModal";
 import { COLORS } from "@/helpers/colors";
 import { clientsReviews } from "@/helpers/staticInfo/clientsReviewsData";
 import { Flex, Text } from "@chakra-ui/react";
 import { useMediaQuery } from "@material-ui/core";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 export default function LandingPage() {
   const router = useRouter();
   const isMobile = useMediaQuery("(max-width:1400px)");
+  const [isOpen, setOpen] = useState(false);
+
+  const handleCloseModal = () => {
+    setOpen(false);
+  };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setOpen(true);
+    }, 3000);
+  }, []);
 
   return (
     <Flex
@@ -166,6 +178,11 @@ export default function LandingPage() {
       </Flex>
 
       <HormonsFields />
+      <PopupModal
+        isOpen={isOpen}
+        handleCloseModal={handleCloseModal}
+        router={router}
+      />
 
       <Footer />
     </Flex>
