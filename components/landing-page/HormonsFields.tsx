@@ -9,9 +9,11 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 import { useMediaQuery } from "@material-ui/core";
+import { getCookie } from "cookies-next";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export const HormonsFields = ({
   fieldsOnly,
@@ -46,6 +48,14 @@ export const HormonsFields = ({
       full: true,
     },
   ]);
+  const { t, i18n } = useTranslation();
+  const [currentLanguage, setCurrentLanguage] = useState<any>(
+    getCookie("current-lang")
+  );
+
+  useEffect(() => {
+    i18n.changeLanguage(currentLanguage);
+  }, []);
 
   const updateValue = async (idx: number, text: string) => {
     let inputs = [...inputFields];
@@ -77,40 +87,38 @@ export const HormonsFields = ({
         {!fieldsOnly && (
           <>
             <Text color="#000" fontWeight={600} fontSize={16} mb={3}>
-              Boka en tid för provtagning
+              {t("Boka en tid för provtagning")}
             </Text>
             <Text color="#000" fontWeight={600} fontSize={40} mb={10}>
-              Hormonanalys
+              {t("Hormonanalys")}
             </Text>
 
             {hormonsPage ? (
               <Text color={COLORS.gray} fontSize={16} mb={10}>
-                En hormonanalys tar en förmiddag, du kommer fastande och vi tar
-                prover mellan kl. 8-12, svaren tar 1 vecka att få tillbakafrån
-                labb och då får du en tid hos vår läkare som går igenomsvaren
-                med dig. Betalning via QR-kod i swish innan du hör av dig så
-                återkommer vi inom 24 timmar och bokar en dag som passar dig.
+                {t(
+                  "En hormonanalys tar en förmiddag, du kommer fastande och vi tar prover mellan kl. 8-12, svaren tar 1 vecka att få tillbakafrån labb och då får du en tid hos vår läkare som går igenomsvaren med dig. Betalning via QR-kod i swish innan du hör av dig så återkommer vi inom 24 timmar och bokar en dag som passar dig."
+                )}
               </Text>
             ) : (
               <>
                 <Text color={COLORS.gray} fontSize={16} mb={5}>
-                  En hormonanalys tar en förmiddag, du kommer fastande och vi
-                  tar prover mellan kl. 8-12, svaren tar 1 vecka att få tillbaka
-                  från labb och då får du en tid hos vår läkare som går igenom
-                  svaren med dig.{" "}
+                  {t(
+                    "En hormonanalys tar en förmiddag, du kommer fastande och vi tar prover mellan kl. 8-12, svaren tar 1 vecka att få tillbaka från labb och då får du en tid hos vår läkare som går igenom svaren med dig."
+                  )}
                 </Text>
                 <Text color={COLORS.gray} fontSize={16} mb={10}>
-                  Betalning via{" "}
+                  {t("Betalning via")}{" "}
                   <span
                     style={{ color: "#000", cursor: "pointer" }}
                     onClick={() => {
                       router.push("/hormonanalys-payment");
                     }}
                   >
-                    QR-kod i swish
+                    {t("QR-kod i swish")}
                   </span>{" "}
-                  innan du hör av dig så återkommer vi inom 24 timmar och bokar
-                  en dag som passar dig.{" "}
+                  {t(
+                    "innan du hör av dig så återkommer vi inom 24 timmar och bokar en dag som passar dig."
+                  )}{" "}
                 </Text>
               </>
             )}
@@ -127,7 +135,7 @@ export const HormonsFields = ({
             <Textarea
               as={item.full ? "textarea" : "input"}
               bgColor="#fff"
-              placeholder={item.placeholder}
+              placeholder={t(item.placeholder) as string}
               value={item.value}
               onChange={(e) => {
                 updateValue(idx, e.target.value);
@@ -150,9 +158,10 @@ export const HormonsFields = ({
           />
 
           <Text>
-            Genom kryssa i så samtycker du aktivt till våra{" "}
-            <Link color="#2596be">villkor för service</Link> och{" "}
-            <Link color="#2596be">integritet</Link> på den här websajten.
+            {t("Genom kryssa i så samtycker du aktivt till våra")}{" "}
+            <Link color="#2596be">{t("villkor för service")}</Link> {t("och")}{" "}
+            <Link color="#2596be">{t("integritet")}</Link>{" "}
+            {t("på den här websajten.")}
           </Text>
         </Flex>
 
@@ -165,7 +174,7 @@ export const HormonsFields = ({
           _hover={{ bgColor: "gray" }}
           onClick={sendData}
         >
-          SÄND
+          {t("SÄND")}
         </Button>
       </Flex>
 
@@ -178,10 +187,10 @@ export const HormonsFields = ({
           />
           <Flex bgColor="#000" p={5} flexDir="column">
             <Text color="#fff" fontSize={21}>
-              BLI AV MED DIN ÖVERVIKT
+              {t("BLI AV MED DIN ÖVERVIKT")}
             </Text>
             <Text color="#fff" fontSize={25} fontWeight={600}>
-              Vi garanterar återgång till normal vikt!
+              {t("Vi garanterar återgång till normal vikt!")}
             </Text>
           </Flex>
         </Flex>

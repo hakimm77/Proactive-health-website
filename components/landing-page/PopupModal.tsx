@@ -12,6 +12,7 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import { useMediaQuery } from "@material-ui/core";
+import { setCookie } from "cookies-next";
 import Image from "next/image";
 
 export const PopupModal = ({
@@ -25,10 +26,17 @@ export const PopupModal = ({
 }) => {
   const isMobile = useMediaQuery("(max-width:1400px)");
 
+  const storePopupData = () => {
+    setCookie("popup", "clicked");
+  };
+
   return (
     <Modal
       isOpen={isOpen}
-      onClose={handleCloseModal}
+      onClose={() => {
+        handleCloseModal();
+        storePopupData();
+      }}
       closeOnOverlayClick={false}
     >
       <ModalOverlay />
@@ -62,11 +70,18 @@ export const PopupModal = ({
             _hover={{ bgColor: "gray" }}
             onClick={() => {
               router.push("/media/nyhetsbrev");
+              storePopupData();
             }}
           >
             Nyhetsbrevssida
           </Button>
-          <Button variant="ghost" onClick={handleCloseModal}>
+          <Button
+            variant="ghost"
+            onClick={() => {
+              handleCloseModal();
+              storePopupData();
+            }}
+          >
             Close
           </Button>
         </ModalFooter>

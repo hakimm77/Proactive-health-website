@@ -3,15 +3,26 @@ import { navItems } from "@/helpers/staticInfo/navbarData";
 import { Button, Flex, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ClickAwayListener, useMediaQuery } from "@material-ui/core";
 import { MyHamburgerMenu } from "./landing-page/MyHamburgerMenu";
+import { LanguageSwitch } from "./LanguageSwitch";
+import { useTranslation } from "react-i18next";
+import { getCookie } from "cookies-next";
 
 export const Navbar = () => {
   const router = useRouter();
   const isMobile = useMediaQuery("(max-width:1400px)");
   const [seletedNavItem, setSelectedNavItem] = useState<number | undefined>();
   const [openNavItems, setOpenNavItems] = useState(false);
+  const { t, i18n } = useTranslation();
+  const [currentLanguage, setCurrentLanguage] = useState<any>(
+    getCookie("current-lang")
+  );
+
+  useEffect(() => {
+    i18n.changeLanguage(currentLanguage);
+  }, []);
 
   return (
     <Flex
@@ -91,7 +102,7 @@ export const Navbar = () => {
                     fontSize={23}
                     textDecor={seletedNavItem === idx ? "underline" : "none"}
                   >
-                    {item.name}
+                    {t(item.name)}
                   </Text>
                   <Image
                     alt={"arrow-down"}
@@ -122,7 +133,7 @@ export const Navbar = () => {
                         }}
                         _hover={{ bgColor: "#c7c5c5" }}
                       >
-                        {subItem.name}
+                        {t(subItem.name)}
                       </Text>
                     ))}
                   </Flex>
@@ -165,7 +176,7 @@ export const Navbar = () => {
                       fontWeight="500"
                       textDecor={seletedNavItem === idx ? "underline" : "none"}
                     >
-                      {item.name}
+                      {t(item.name)}
                     </Text>
                     <Image
                       alt={"arrow-down"}
@@ -197,7 +208,7 @@ export const Navbar = () => {
                           }}
                           _hover={{ bgColor: "#c7c5c5" }}
                         >
-                          {subItem.name}
+                          {t(subItem.name)}
                         </Text>
                       ))}
                     </Flex>
@@ -216,9 +227,12 @@ export const Navbar = () => {
               onClick={() => {
                 router.push("/book-consultation");
               }}
+              mr={10}
             >
-              BOKA KONSULTATION
+              {t("BOKA KONSULTATION")}
             </Button>
+
+            <LanguageSwitch />
           </Flex>
         </ClickAwayListener>
       )}

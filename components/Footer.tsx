@@ -7,6 +7,7 @@ import {
 } from "../helpers/staticInfo/footerData";
 import Image from "next/image";
 import { useMediaQuery } from "@material-ui/core";
+import { LanguageSwitch } from "./LanguageSwitch";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
