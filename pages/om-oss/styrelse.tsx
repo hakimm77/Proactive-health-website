@@ -4,12 +4,19 @@ import { COLORS } from "@/helpers/colors";
 import { redirectLink } from "@/helpers/redirectLink";
 import { Flex, Text } from "@chakra-ui/react";
 import { useMediaQuery } from "@material-ui/core";
+import { getCookie } from "cookies-next";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const BoardPage = () => {
   const router = useRouter();
   const isMobile = useMediaQuery("(max-width:1400px)");
+  const { t, i18n } = useTranslation();
+  const [currentLanguage, setCurrentLanguage] = useState<any>(
+    getCookie("current-lang")
+  );
 
   return (
     <Flex flexDir="column" alignItems="center" bgColor={COLORS.pink}>
@@ -39,42 +46,39 @@ const BoardPage = () => {
             fontWeight={600}
             mb={10}
           >
-            Styrelsen{" "}
-          </Text>
-
-          <Text mb={10}>Vår vision är att arbeta tillsammans under temat:</Text>
-
-          <Text fontWeight={600}>Varför?</Text>
-          <Text mb={10}>
-            Vi gör detta för att vi är övertygade om att den här processen är
-            den minsta gemensamma nämnaren som ger en friskare befolkning,
-            mindre belastning på sjukvården och erbjuder våra patienter ett
-            friskare och lyckligare liv.
+            {t("Styrelsen")}{" "}
           </Text>
 
           <Text mb={10}>
-            Att kunna hjälpa människor som lider av sin övervikt fysiskt,
-            psykiskt och blir negativt särbehandlade i samhället är ett
-            privilegium. Vi följer dig på hela resan före, under och efter
-            behandlingen.
+            {t("Vår vision är att arbeta tillsammans under temat:")}
+          </Text>
+
+          <Text fontWeight={600}>{t("Varför?")}</Text>
+          <Text mb={10}>
+            {t(
+              "Vi gör detta för att vi är övertygade om att den här processen är den minsta gemensamma nämnaren som ger en friskare befolkning, mindre belastning på sjukvården och erbjuder våra patienter ett friskare och lyckligare liv."
+            )}
           </Text>
 
           <Text mb={10}>
-            Vi har{" "}
+            {t(
+              "Att kunna hjälpa människor som lider av sin övervikt fysiskt, psykiskt och blir negativt särbehandlade i samhället är ett privilegium. Vi följer dig på hela resan före, under och efter behandlingen."
+            )}
+          </Text>
+
+          <Text mb={10}>
+            {t("Vi har")}{" "}
             <span
               style={{ color: "#000", cursor: "pointer" }}
               onClick={() => {
                 router.push("/om-oss/stiftelsen");
               }}
             >
-              pro bono verksamhet
+              {t("pro bono verksamhet")}
             </span>{" "}
-            som finansieras av våra patienter, när du väljer att hjälpa dig
-            själv så hjälper du även någon som inte har finansiella resurser,
-            för var 10:de patient så hjälper vi en patient som kanske är
-            ensamstående, arbetslös och inte har en gällande försäkring från
-            försäkringskassan, beroende av socialbidrag att få hjälp att bli
-            frisk.
+            {t(
+              "som finansieras av våra patienter, när du väljer att hjälpa dig själv så hjälper du även någon som inte har finansiella resurser, för var 10:de patient så hjälper vi en patient som kanske är ensamstående, arbetslös och inte har en gällande försäkring från försäkringskassan, beroende av socialbidrag att få hjälp att bli frisk."
+            )}
           </Text>
 
           <Text mb={10}>

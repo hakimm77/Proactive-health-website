@@ -3,10 +3,17 @@ import { Navbar } from "@/components/Navbar";
 import { COLORS } from "@/helpers/colors";
 import { Flex, Text } from "@chakra-ui/react";
 import { useMediaQuery } from "@material-ui/core";
+import { getCookie } from "cookies-next";
 import Image from "next/image";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const StaffPage = () => {
   const isMobile = useMediaQuery("(max-width:1400px)");
+  const { t, i18n } = useTranslation();
+  const [currentLanguage, setCurrentLanguage] = useState<any>(
+    getCookie("current-lang")
+  );
 
   return (
     <Flex flexDir="column" alignItems="center" bgColor={COLORS.pink}>
@@ -39,60 +46,59 @@ const StaffPage = () => {
             Michel Tagliati, MD CEO
           </Text>
 
-          <Text mb={10}>Välkommen, </Text>
+          <Text mb={10}>{t("Välkommen")}, </Text>
 
           <Text mb={10}>
-            En av mina döttrar drabbades av typ 1 diabetes vid 10 års ålder för
-            6 år sedan och avled nästan av en diabetesketoacidos under en
-            utlandsvistelse. Det föranledde att jag de sedan dess läst mycket
-            och observerat över 500 000 blodsockervärden och olika inverkan som
-            miljöfaktorer har på insulin och glukosmetabolism.{" "}
+            {t(
+              "En av mina döttrar drabbades av typ 1 diabetes vid 10 års ålder för 6 år sedan och avled nästan av en diabetesketoacidos under en utlandsvistelse. Det föranledde att jag de sedan dess läst mycket och observerat över 500 000 blodsockervärden och olika inverkan som miljöfaktorer har på insulin och glukosmetabolism."
+            )}{" "}
           </Text>
 
           <Text mb={10}>
-            I detta insåg jag att det går att göra så oerhört mycket mer nytta
-            för människors hälsa proaktivt än reaktivt. Jag har valt ut den
-            process som jag ser gör störst nytta för befolkningen och arbetar nu
-            inte bara för en patient i taget utan för ett regimskifte där vi får
-            proaktiv hälsa istället för sjuk vård.
+            {t(
+              "I detta insåg jag att det går att göra så oerhört mycket mer nytta för människors hälsa proaktivt än reaktivt. Jag har valt ut den process som jag ser gör störst nytta för befolkningen och arbetar nu inte bara för en patient i taget utan för ett regimskifte där vi får proaktiv hälsa istället för sjuk vård."
+            )}
           </Text>
 
           <Text mb={10}>
-            I andra länder heter det healthcare, i Sverige heter det sjukvård.
+            {t(
+              "I andra länder heter det healthcare, i Sverige heter det sjukvård."
+            )}
           </Text>
 
-          <Text mb={10}>Därför startade jag Proaktiv Hälsa. </Text>
+          <Text mb={10}>{t("Därför startade jag Proaktiv Hälsa.")} </Text>
 
           <Text mb={10}>
-            Under 2021 hjälpte vi 3 personer att gå ner 130 kilo på 12 månader.
-            Två kvinnor fick sitt liv tillbaka, en man kunde återgå till
-            arbetslivet full av energi trots att det inte var så många år till
-            pensionen. Det var en otrolig känsla!
+            {t(
+              "Under 2021 hjälpte vi 3 personer att gå ner 130 kilo på 12 månader. Två kvinnor fick sitt liv tillbaka, en man kunde återgå till arbetslivet full av energi trots att det inte var så många år till pensionen. Det var en otrolig känsla!"
+            )}
           </Text>
 
           <Text mb={10}>
-            Under 2022 så startar vi en kommersiell tillgänglighet för detta
-            upplägg för dig som är storvuxen och behöver få hjälp med att bli av
-            med dina kilon och få en normal vikt utan operation.
+            {t(
+              "Under 2022 så startar vi en kommersiell tillgänglighet för detta upplägg för dig som är storvuxen och behöver få hjälp med att bli av med dina kilon och få en normal vikt utan operation."
+            )}
           </Text>
 
-          <Text mb={10}>Välkomna till oss!</Text>
+          <Text mb={10}>{t("Välkomna till oss!")}</Text>
 
           <Text mb={10}>Michel Tagliati, MD CEO</Text>
 
           <Text mb={5} as="li">
-            Vi arbetar bara med överviktsbehandling
+            {t("Vi arbetar bara med överviktsbehandling")}
           </Text>
           <Text mb={5} as="li">
-            Vi har mottagning i Stockholm.
+            {t("Vi har mottagning i Stockholm.")}
           </Text>
           <Text mb={5} as="li">
-            Vi är privata, obereoende inte riskkapitalfinansierade och politiskt
-            obunden verksamhet som arbetar individbaserat.
+            {t(
+              "Vi är privata, obereoende inte riskkapitalfinansierade och politiskt obunden verksamhet som arbetar individbaserat."
+            )}
           </Text>
           <Text mb={5} as="li">
-            Vi har en pro bono verksamhet för att ge något tillbaka till de som
-            av olika orsaker inte har egna ekonomiska resurser.
+            {t(
+              "Vi har en pro bono verksamhet för att ge något tillbaka till de som av olika orsaker inte har egna ekonomiska resurser."
+            )}
           </Text>
         </Flex>
 

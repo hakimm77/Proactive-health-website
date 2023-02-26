@@ -8,10 +8,17 @@ import {
 import Image from "next/image";
 import { useMediaQuery } from "@material-ui/core";
 import { LanguageSwitch } from "./LanguageSwitch";
+import { useTranslation } from "react-i18next";
+import { useState } from "react";
+import { getCookie } from "cookies-next";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
   const isMobile = useMediaQuery("(max-width:1400px)");
+  const { t, i18n } = useTranslation();
+  const [currentLanguage, setCurrentLanguage] = useState<any>(
+    getCookie("current-lang")
+  );
 
   return (
     <Flex
@@ -34,11 +41,11 @@ export const Footer = () => {
             fontWeight={600}
             mb={isMobile ? 5 : 10}
           >
-            HITTA TILL OSS
+            {t("HITTA TILL OSS")}
           </Text>
           {!isMobile && (
             <Text fontSize={18} color="#fff" mb={5}>
-              Hitta till våra mottagning
+              {t("Hitta till våra mottagning")}
             </Text>
           )}
 
@@ -69,7 +76,7 @@ export const Footer = () => {
                 ml={5}
                 _hover={{ color: COLORS.gray }}
               >
-                {item.name}
+                {t(item.name)}
               </Text>
             </Flex>
           ))}
@@ -82,7 +89,7 @@ export const Footer = () => {
             fontWeight={600}
             mb={isMobile ? 5 : 10}
           >
-            FÖRETAG
+            {t("FÖRETAG")}
           </Text>
 
           {businessData.map((item, idx) => (
@@ -109,7 +116,7 @@ export const Footer = () => {
                 ml={5}
                 _hover={{ color: COLORS.gray }}
               >
-                {item.name}
+                {t(item.name)}
               </Text>
             </Flex>
           ))}
@@ -122,7 +129,7 @@ export const Footer = () => {
             fontWeight={600}
             mb={isMobile ? 5 : 10}
           >
-            SENASTE NYTT
+            {t("SENASTE NYTT")}
           </Text>
 
           {newsData.map((item, idx) => (
@@ -149,7 +156,7 @@ export const Footer = () => {
                 ml={5}
                 _hover={{ color: COLORS.gray }}
               >
-                {item.name}
+                {t(item.name)}
               </Text>
             </Flex>
           ))}
@@ -162,12 +169,12 @@ export const Footer = () => {
             fontWeight={600}
             mb={isMobile ? 5 : 10}
           >
-            ÖPPETTIDER
+            {t("ÖPPETTIDER")}
           </Text>
 
           <Flex flexDir="row" alignItems="center">
             <Text fontSize={18} color="#fff" mr={10}>
-              Mån - Fre
+              {t("Mån - Fre")}
             </Text>
             <Text fontSize={18} color="#fff">
               08:00 - 16:00
@@ -182,7 +189,8 @@ export const Footer = () => {
         fontSize={14}
         textAlign="center"
       >
-        © {currentYear} Proaktiv Hälsa Sverige AB - Alla rättigheter reserverade
+        © {currentYear}{" "}
+        {t("Proaktiv Hälsa Sverige AB - Alla rättigheter reserverade")}
       </Text>
     </Flex>
   );
