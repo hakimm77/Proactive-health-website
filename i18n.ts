@@ -7,6 +7,7 @@ import { navbarTranslations } from "./helpers/translations/navbarTranslations";
 import { staffPageTranslations } from "./helpers/translations/staffPageTranslations";
 import { boardPageTranslations } from "./helpers/translations/boardPageTranslations";
 import { footerTranslations } from "./helpers/translations/footerTranslations";
+import { investorsPageTranslations } from "./helpers/translations/investorsPageTranslations";
 
 i18n
   .use(LanguageDetector)
@@ -30,6 +31,8 @@ i18n
           ...staffPageTranslations,
           //single-pages content /board
           ...boardPageTranslations,
+          //single-pages content /investor
+          ...investorsPageTranslations,
         },
       },
     },

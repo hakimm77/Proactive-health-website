@@ -151,7 +151,13 @@ export const HormonsFields = ({
         <Flex flexDir="row" alignItems="flex-start" mb={5}>
           <input
             type="checkbox"
-            style={{ margin: 10, width: 30, height: 30, cursor: "pointer" }}
+            style={{
+              margin: 10,
+              width: 30,
+              height: 30,
+              cursor: "pointer",
+              color: "white",
+            }}
             onChange={(e) => {
               setAcceptedRules(e.target.checked);
             }}

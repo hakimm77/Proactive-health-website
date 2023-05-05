@@ -5,7 +5,7 @@ import { Flex, Text } from "@chakra-ui/react";
 import { useMediaQuery } from "@material-ui/core";
 import { getCookie } from "cookies-next";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 const StaffPage = () => {
@@ -14,6 +14,10 @@ const StaffPage = () => {
   const [currentLanguage, setCurrentLanguage] = useState<any>(
     getCookie("current-lang")
   );
+
+  useEffect(() => {
+    i18n.changeLanguage(currentLanguage);
+  }, []);
 
   return (
     <Flex flexDir="column" alignItems="center" bgColor={COLORS.pink}>

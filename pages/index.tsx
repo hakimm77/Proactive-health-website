@@ -10,7 +10,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { getCookie, setCookie } from "cookies-next";
+import { getCookie, getCookies, setCookie } from "cookies-next";
 
 export default function LandingPage() {
   const router = useRouter();

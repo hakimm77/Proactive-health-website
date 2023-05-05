@@ -3,10 +3,21 @@ import { Navbar } from "@/components/Navbar";
 import { COLORS } from "@/helpers/colors";
 import { Flex, Text } from "@chakra-ui/react";
 import { useMediaQuery } from "@material-ui/core";
+import { getCookie } from "cookies-next";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const InvestorPage = () => {
   const isMobile = useMediaQuery("(max-width:1400px)");
+  const { t, i18n } = useTranslation();
+  const [currentLanguage, setCurrentLanguage] = useState<any>(
+    getCookie("current-lang")
+  );
+
+  useEffect(() => {
+    i18n.changeLanguage(currentLanguage);
+  }, []);
 
   return (
     <Flex flexDir="column" alignItems="center" bgColor={COLORS.pink}>
@@ -36,30 +47,31 @@ const InvestorPage = () => {
             fontWeight={600}
             mb={10}
           >
-            Investerare
+            {t("Investerare")}
           </Text>
 
           <Text mb={10}>
-            Vi är ett startup som arbetar utanför den reglerade sjukvården, vi
-            är inte finansierade av offentliga system utan helt beroende av våra
-            egna intäkter.
+            {t(
+              "Vi är ett startup som arbetar utanför den reglerade sjukvården, vi är inte finansierade av offentliga system utan helt beroende av våra egna intäkter."
+            )}
           </Text>
 
           <Text mb={10}>
-            Vi har haft proof-of-concept utveckling under 2020-2021 och
-            kommersialiserade verksamheten 2022 och har sålt behandlingar
-            framgångsrikt sedan februari.
+            {t(
+              "Vi har haft proof-of-concept utveckling under 2020-2021 och kommersialiserade verksamheten 2022 och har sålt behandlingar framgångsrikt sedan februari."
+            )}
           </Text>
 
           <Text mb={10}>
-            Vi siktar på att sätta upp 10 kliniker totalt i Sverige,
-            Skandinavien och EU de kommande 10 åren.
+            {t(
+              "Vi siktar på att sätta upp 10 kliniker totalt i Sverige, Skandinavien och EU de kommande 10 åren."
+            )}
           </Text>
 
           <Text mb={10}>
-            Det ger en kapacitet på 10 000 patienter/år per och där verksamheten
-            är data driven och personalomsättning motverkas med akademisk
-            fortbildning, pro bono verksamhet samt optionsprogram.
+            {t(
+              "Det ger en kapacitet på 10 000 patienter/år per och där verksamheten är data driven och personalomsättning motverkas med akademisk fortbildning, pro bono verksamhet samt optionsprogram."
+            )}
           </Text>
         </Flex>
 

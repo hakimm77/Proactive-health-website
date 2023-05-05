@@ -8,6 +8,13 @@ const theme = extendTheme({
   fonts: {
     body: "Poppins",
   },
+  styles: {
+    global: {
+      body: {
+        color: "black",
+      },
+    },
+  },
 });
 
 export default function App({ Component, pageProps }: AppProps) {
