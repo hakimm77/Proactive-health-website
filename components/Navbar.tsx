@@ -32,8 +32,8 @@ export const Navbar = () => {
       justifyContent={isMobile ? "center" : "space-between"}
       bgColor={COLORS.pink}
       w="100%"
-      pl={isMobile ? 0 : "5%"}
-      pr={isMobile ? 0 : "5%"}
+      pl={isMobile ? 0 : "8%"}
+      pr={isMobile ? 0 : "8%"}
       minH={isMobile ? "80px" : ""}
       h={isMobile ? "auto" : "100px"}
       zIndex={100}
@@ -216,7 +216,6 @@ export const Navbar = () => {
                 </Flex>
               ))}
             </Flex>
-
             <Button
               h={50}
               bgColor={COLORS.pink}
@@ -232,7 +231,7 @@ export const Navbar = () => {
               {t("BOKA KONSULTATION")}
             </Button>
 
-            <LanguageSwitch />
+            {/* <LanguageSwitch /> */}
           </Flex>
         </ClickAwayListener>
       )}

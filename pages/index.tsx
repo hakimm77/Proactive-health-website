@@ -4,13 +4,14 @@ import { HormonsFields } from "@/components/landing-page/HormonsFields";
 import { PopupModal } from "@/components/landing-page/PopupModal";
 import { COLORS } from "@/helpers/colors";
 import { clientsReviews } from "@/helpers/staticInfo/clientsReviewsData";
-import { Flex, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import { useMediaQuery } from "@material-ui/core";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { getCookie, getCookies, setCookie } from "cookies-next";
+import Script from "next/script";
 
 export default function LandingPage() {
   const router = useRouter();
@@ -75,9 +76,9 @@ export default function LandingPage() {
           mt={100}
           position="absolute"
           flexDir="column"
-          top={isMobile ? "100px" : 150}
-          left={isMobile ? 0 : 150}
-          alignItems="center"
+          top={isMobile ? "30px" : 70}
+          left={isMobile ? "5%" : 230}
+          alignItems="left"
         >
           <Text
             color="#fff"
@@ -86,34 +87,59 @@ export default function LandingPage() {
             fontWeight={500}
             fontSize={isMobile ? 18 : 20}
             p={2}
-            mb={isMobile ? 20 : 5}
+            mb={5}
           >
-            {t("ÖVERVIKTSMOTTAGNING")}
+            {t("LÄKARMOTTAGNING I STOCKHOLM")}
           </Text>
 
-          <Flex flexDir="column">
+          <Flex flexDir="column" fontSize={isMobile ? 16 : 19} w="95%">
             <Text
               color="#000"
               fontWeight="extrabold"
               fontSize={isMobile ? 35 : 65}
               textDecor={isMobile ? "none" : "underline"}
               mb={5}
-              textAlign="center"
             >
               Proaktiv Hälsa
             </Text>
 
-            <Text fontSize={isMobile ? 18 : 20} textAlign="center" ml={5}>
-              {t("BLI AV MED DIN ÖVERVIKT UTAN OPERATION")}...{"  "}
-              <span
-                style={{ fontWeight: "bold", cursor: "pointer" }}
-                onClick={() => {
-                  router.push("/tjanster");
-                }}
-              >
-                {t("LÄS MER")}
-              </span>
+            <Text>
+              Vi tillhandahåller avancerad individualiserad diagnostik &
+              medicinsk behandling vid övervikt med garanterade resultat!
             </Text>
+            <br />
+            <Text>
+              Vi har även diagnostik och behandling av prediabetes & diabetes,
+              det är vi helt ensamma om.
+            </Text>
+            <br />
+            <Text>
+              Vi har även diagnostik och behandling av prediabetes & diabetes,
+              det är vi helt ensamma om.
+            </Text>
+            <br />
+            <Text>Välkommen!</Text>
+            <br />
+            <Text>Michel Tagliati, leg.läk</Text>
+            <Text mb={10}>Grundare av Proaktiv Hälsa Sverige AB</Text>
+
+            <Button
+              h={"60px"}
+              w="fit-content"
+              bgColor={"#000"}
+              borderRadius={100}
+              border="1.5px solid #000"
+              color={"#fff"}
+              _hover={{ backgroundColor: "#000", color: "#fff" }}
+              onClick={() => {
+                router.push("/book-consultation");
+              }}
+              px={10}
+              fontWeight="normal"
+              fontSize={isMobile ? 18 : 20}
+            >
+              LÄS MER
+            </Button>
           </Flex>
         </Flex>
       </Flex>
@@ -199,6 +225,21 @@ export default function LandingPage() {
       />
 
       <Footer />
+
+      <Script
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.chatbaseConfig = {
+              chatbotId: "Ln7v5Imi-pnUzxsUSPJC9",
+            };
+          `,
+        }}
+      ></Script>
+      <Script
+        src="https://www.chatbase.co/embed.min.js"
+        id="Ln7v5Imi-pnUzxsUSPJC9"
+        defer
+      />
     </Flex>
   );
 }
